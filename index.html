@@ -193,10 +193,10 @@ td.who{min-width:130px;color:var(--ink-2)}
   .intro,.outbox,.extra,.bands li,.tips li,.callout,.notes{border-color:#999}
 }
 </style>
-<style>[hidden]{display:none!important}.upd{position:sticky;top:0;z-index:50;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px 16px;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:15px}.upd button{font:inherit;font-size:14px;padding:4px 14px;border-radius:999px;border:2px solid currentColor;background:transparent;color:inherit;cursor:pointer}.upd button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}@media print{.upd{display:none!important}}</style>
+<style>[hidden]{display:none!important}.mo{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px}.mo-box{background:var(--surface);color:var(--ink);border-radius:12px;padding:28px;width:340px;max-width:100%;box-shadow:0 10px 40px rgba(0,0,0,.2);animation:moPop .2s ease}@keyframes moPop{from{opacity:0;transform:scale(.92) translateY(-10px)}to{opacity:1;transform:none}}@media (prefers-reduced-motion:reduce){.mo-box{animation:none}}.mo-box h3{font-size:17px;margin:0 0 6px}.mo-box p{font-size:13px;color:var(--ink-2);margin:0 0 16px}.mo-btns{display:flex;gap:8px}.mo-btns button{flex:1;padding:10px;border:none;border-radius:8px;font-size:14px;cursor:pointer;font-family:inherit}.mo-ok{background:var(--accent);color:var(--accent-ink)}.mo-no{background:var(--surface-2);color:var(--ink)}.mo-btns button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}@media print{.mo{display:none!important}}</style>
 </head>
 <body>
-<div class="upd" id="upd" hidden role="status">內容已更新<button type="button" id="updBtn">點這裡看最新版</button></div>
+<div class="mo" id="upd" hidden role="dialog" aria-modal="true" aria-labelledby="moT"><div class="mo-box"><h3 id="moT">🔄 內容已更新</h3><p>商城產品總覽有新版本，要現在載入最新內容嗎？</p><div class="mo-btns"><button type="button" class="mo-no" id="updNo">稍後</button><button type="button" class="mo-ok" id="updBtn">立即更新</button></div></div></div>
 
 
 <div class="wrap">
@@ -427,6 +427,6 @@ td.who{min-width:130px;color:var(--ink-2)}
 <p class="foot">FIN SHOP 三大類產品簡介與差別分析（新人用）　資料抓取 2026-10-06 23:08　商品名可點開對應的商城商品頁。</p>
 </div>
 
-<script>(function(){var V="2";function go(){location.replace(location.pathname+"?v="+encodeURIComponent(window.__nv||Date.now())+location.hash)}function chk(auto){fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(j&&String(j.v)!==V){window.__nv=j.v;if(auto){go()}else{document.getElementById("upd").hidden=false}}}).catch(function(){})}document.getElementById("updBtn").addEventListener("click",go);setInterval(function(){chk(false)},60000);document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")chk(true)});})();</script>
+<script>(function(){var V="3",nv=null,snooze=0,m=document.getElementById("upd");function go(){location.replace(location.pathname+"?v="+encodeURIComponent(nv||Date.now())+location.hash)}function show(){if(!m.hidden||Date.now()<snooze)return;m.hidden=false;document.getElementById("updBtn").focus()}function hide(){m.hidden=true;snooze=Date.now()+600000}function chk(){fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(j&&String(j.v)!==V){nv=j.v;show()}}).catch(function(){})}document.getElementById("updBtn").addEventListener("click",go);document.getElementById("updNo").addEventListener("click",hide);document.addEventListener("keydown",function(e){if(m.hidden)return;if(e.key==="Escape")hide();if(e.key==="Enter")go()});setInterval(chk,60000);document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")chk()});})();</script>
 </body>
 </html>
