@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>FIN 商城產品總覽</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f5f7; --surface:#ffffff; --surface-2:#e9eef2; --ink:#16212b; --ink-2:#4a5866; --line:#d3dbe2;
+  --accent:#0d6e6e; --accent-ink:#ffffff; --accent-soft:#d9efed;
+  --c1:#2f5fa7; --c2:#b4462b; --c3:#2d7a3e;
+  --chip-pre-bg:#fff1cc; --chip-pre-fg:#6b4a00;
+  --chip-out-bg:#fde0de; --chip-out-fg:#8a1f17;
+  --chip-fixed-bg:#e3e6ff; --chip-fixed-fg:#2c3480;
+  --chip-kind-bg:#e6ebef; --chip-kind-fg:#36434f;
+  --link:#0b5c8f;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1418; --surface:#171e24; --surface-2:#1f2830; --ink:#e6edf2; --ink-2:#9fb0bd; --line:#2c3843;
+    --accent:#4fc3b8; --accent-ink:#0b1416; --accent-soft:#163533;
+    --c1:#7fa8e8; --c2:#ef8f74; --c3:#79c88a;
+    --chip-pre-bg:#3d3215; --chip-pre-fg:#f4d58a;
+    --chip-out-bg:#44201d; --chip-out-fg:#f5aaa3;
+    --chip-fixed-bg:#262c55; --chip-fixed-fg:#bcc3ff;
+    --chip-kind-bg:#26313a; --chip-kind-fg:#c3cfd8;
+    --link:#7cc4f2;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1418; --surface:#171e24; --surface-2:#1f2830; --ink:#e6edf2; --ink-2:#9fb0bd; --line:#2c3843;
+  --accent:#4fc3b8; --accent-ink:#0b1416; --accent-soft:#163533;
+  --c1:#7fa8e8; --c2:#ef8f74; --c3:#79c88a;
+  --chip-pre-bg:#3d3215; --chip-pre-fg:#f4d58a;
+  --chip-out-bg:#44201d; --chip-out-fg:#f5aaa3;
+  --chip-fixed-bg:#262c55; --chip-fixed-fg:#bcc3ff;
+  --chip-kind-bg:#26313a; --chip-kind-fg:#c3cfd8;
+  --link:#7cc4f2;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(16px,4vw,40px);padding-block:32px 64px}
+h1,h2,h3,h4{font-family:"Chiron GoRound TC","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.3;margin:0}
+a{color:var(--link);text-underline-offset:2px}
+a:hover{text-decoration-thickness:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* header */
+.top{border-bottom:2px solid var(--ink);padding-bottom:24px;margin-bottom:28px}
+.kicker{font-size:13px;letter-spacing:.12em;color:var(--accent);font-weight:700}
+.top h1{font-size:clamp(28px,5vw,44px);margin-top:6px}
+.lede{font-size:clamp(16px,2.2vw,19px);color:var(--ink-2);margin:10px 0 0;max-width:46em}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px;font-size:14px;color:var(--ink-2)}
+.meta b{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+.notes{margin-top:16px;padding:12px 16px;background:var(--surface);border-left:4px solid var(--accent);font-size:14px;color:var(--ink-2)}
+.notes p{margin:0}
+.notes p+p{margin-top:4px}
+
+/* toc */
+.toc{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.toc a{display:block;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--cat);padding:14px 16px;border-radius:6px}
+.toc a:hover{border-color:var(--cat)}
+.toc .num{font-family:"Chiron GoRound TC",sans-serif;color:var(--cat);font-weight:700;font-size:14px}
+.toc .t{display:block;font-family:"Chiron GoRound TC","Noto Sans TC",sans-serif;font-weight:700;font-size:19px}
+.toc .r{display:block;font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.toc-more{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;margin-bottom:36px}
+.cat1{--cat:var(--c1)} .cat2{--cat:var(--c2)} .cat3{--cat:var(--c3)}
+
+/* sections */
+section{margin-top:48px}
+.sec-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px solid var(--cat,var(--ink));padding-bottom:8px;margin-bottom:16px}
+.sec-head .no{font-family:"Chiron GoRound TC",sans-serif;font-size:clamp(28px,5vw,40px);font-weight:700;color:var(--cat,var(--accent));line-height:1}
+.sec-head h2{font-size:clamp(22px,3.6vw,30px)}
+.intro{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 18px;max-width:60em}
+.intro p{margin:0}
+.intro p+p{margin-top:8px}
+.label{display:inline-block;font-weight:700;color:var(--cat,var(--accent));margin-right:6px}
+h3{font-size:19px;margin:28px 0 6px}
+.sub{color:var(--ink-2);font-size:14px;margin:0 0 10px}
+
+/* tables */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.tablewrap:focus{outline:2px solid var(--accent);outline-offset:2px}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:14.5px}
+th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+thead th{background:var(--surface-2);font-weight:700;font-size:13px;color:var(--ink-2);white-space:nowrap;position:sticky;top:0}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:color-mix(in srgb,var(--surface-2) 55%,transparent)}
+td.brand{white-space:nowrap;color:var(--ink-2);font-size:13.5px}
+td.name{min-width:200px;font-weight:500}
+td.name a{color:var(--ink);text-decoration-color:var(--line)}
+td.name a:hover{color:var(--link);text-decoration-color:currentColor}
+.price,td.price{text-align:right;font-variant-numeric:tabular-nums}
+td.price{min-width:150px;max-width:220px}
+.pmain{display:block;font-weight:700;white-space:nowrap}
+td.price .psub{overflow-wrap:anywhere}
+.psub{display:block;font-size:12.5px;color:var(--ink-2);font-weight:400}
+td.feat{min-width:260px}
+td.who{min-width:130px;color:var(--ink-2)}
+.na{color:var(--ink-2);font-style:normal;border-bottom:1px dashed var(--line)}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.chip{display:inline-block;font-size:12px;line-height:1.4;font-weight:700;padding:1px 8px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.chip-pre{background:var(--chip-pre-bg);color:var(--chip-pre-fg)}
+.chip-out{background:var(--chip-out-bg);color:var(--chip-out-fg)}
+.chip-fixed{background:var(--chip-fixed-bg);color:var(--chip-fixed-fg)}
+.chip-kind{background:var(--chip-kind-bg);color:var(--chip-kind-fg)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--ink-2);margin:0 0 10px;align-items:center}
+.legend span.item{display:inline-flex;gap:6px;align-items:center}
+
+/* out of stock & extras */
+.outbox{margin-top:14px;padding:12px 16px;border:1px dashed var(--line);border-radius:6px;background:var(--surface)}
+.outbox h4{font-size:15px;margin-bottom:6px}
+.outbox ul{margin:0;padding:0;list-style:none}
+.outbox li{padding:4px 0;font-size:14.5px}
+.outbox li .chip{margin-right:8px}
+.extra{margin-top:12px;font-size:14.5px;padding:12px 16px;background:var(--surface);border:1px solid var(--line);border-radius:6px}
+.extra p{margin:0}
+.extra p+p{margin-top:6px}
+
+/* price bands */
+.bands{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.bands li{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 16px;position:relative}
+.bands li::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--cat,var(--accent));border-radius:6px 0 0 6px;opacity:.85}
+.band-head{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.band-name{font-family:"Chiron GoRound TC","Noto Sans TC",sans-serif;font-weight:700;font-size:17px}
+.band-range{font-variant-numeric:tabular-nums;font-size:13.5px;color:var(--ink-2);font-weight:500}
+.bands p{margin:6px 0 0;font-size:14.5px}
+
+/* compare */
+.cmp table{min-width:640px}
+.cmp th[scope=row]{white-space:nowrap;background:var(--surface-2);font-size:13.5px}
+.cmp thead th:nth-child(2){color:var(--c1)} .cmp thead th:nth-child(3){color:var(--c2)}
+.callout{margin-top:12px;padding:12px 16px;border-left:4px solid var(--c2);background:var(--surface);font-size:14.5px}
+.callout p{margin:0}
+.pair{margin:8px 0 0;padding-left:1.2em}
+.pair li{margin:4px 0}
+
+/* tips */
+.tips{counter-reset:t;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.tips li{counter-increment:t;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px 14px 56px;position:relative;font-size:15px}
+.tips li::before{content:counter(t);position:absolute;left:14px;top:12px;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-family:"Chiron GoRound TC",sans-serif;font-weight:700;display:grid;place-items:center;font-size:15px}
+
+/* sources */
+.src{font-size:14.5px}
+.src ul{padding-left:1.2em;margin:6px 0}
+.src li{margin:4px 0}
+.src .url{word-break:break-all;font-size:13px}
+.src code{font-size:13px;background:var(--surface-2);padding:1px 5px;border-radius:4px;word-break:break-all}
+.foot{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-2)}
+
+@media (max-width:640px){
+  .toc{grid-template-columns:1fr}
+  table{font-size:14px}
+}
+
+@media print{
+  :root,:root[data-theme="dark"],:root:not([data-theme="light"]){
+    --bg:#fff; --surface:#fff; --surface-2:#f0f0f0; --ink:#000; --ink-2:#333; --line:#999;
+    --accent:#000; --accent-ink:#fff; --accent-soft:#eee; --c1:#000; --c2:#000; --c3:#000; --link:#000;
+    --chip-pre-bg:#fff; --chip-pre-fg:#000; --chip-out-bg:#fff; --chip-out-fg:#000;
+    --chip-fixed-bg:#fff; --chip-fixed-fg:#000; --chip-kind-bg:#fff; --chip-kind-fg:#000;
+    color-scheme:light;
+  }
+  @page{size:A4;margin:14mm 12mm}
+  body{background:#fff;color:#000;font-size:11pt;line-height:1.55}
+  .wrap{max-width:none;padding:0}
+  .toc,.toc-more{display:none}
+  a{color:#000;text-decoration:none}
+  td.name a,td.feat a{text-decoration:underline}
+  .tablewrap{overflow:visible;border:1px solid #999;border-radius:0}
+  table{min-width:0;font-size:9pt}
+  th,td{padding:5px 6px}
+  thead{display:table-header-group}
+  thead th{position:static;background:#eee !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  tr,.bands li,.tips li,.outbox li{break-inside:avoid;page-break-inside:avoid}
+  tbody tr:hover td{background:none}
+  td.feat{min-width:0} td.name{min-width:0} td.price{min-width:0} td.who{min-width:0}
+  .sec-cat{page-break-before:always;break-before:page}
+  section{margin-top:24px}
+  h2,h3,h4,.sec-head{break-after:avoid;page-break-after:avoid}
+  .bands li::before{display:none}
+  .tips li::before{border:1px solid #000;background:#fff;color:#000}
+  .chip{border:1px solid #000}
+  .intro,.outbox,.extra,.bands li,.tips li,.callout,.notes{border-color:#999}
+}
+</style>
+<style>.upd{position:sticky;top:0;z-index:50;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px 16px;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:15px}.upd button{font:inherit;font-size:14px;padding:4px 14px;border-radius:999px;border:2px solid currentColor;background:transparent;color:inherit;cursor:pointer}.upd button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}@media print{.upd{display:none!important}}</style>
+</head>
+<body>
+<div class="upd" id="upd" hidden role="status">內容已更新<button type="button" id="updBtn">點這裡看最新版</button></div>
+
+
+<div class="wrap">
+<header class="top">
+  <div class="kicker">FIN SHOP 新人教材</div>
+  <h1>FIN 商城產品總覽</h1>
+  <p class="lede">給新進同仁的三大類快速入門：人體工學椅、電競椅、智慧型電動升降桌，各類商品依售價由低到高排列，並整理價位帶與三類之間的差別。</p>
+  <div class="meta">
+    <span>資料抓取時間　<b>2026-10-06 23:08</b>（台灣時間）</span>
+    <span>來源　finshop.com.tw 官方商城三個分類頁與其商品頁</span>
+  </div>
+  <div class="notes">
+    <p>價格為當下商城售價，日後可能變動。</p>
+    <p>商品頁文字沒寫特色的款式（多半是規格做成圖片）：客服資料庫有資料的已補上並註明「來源：客服資料庫」，查不到的改放「看商品頁 ↗」連結，本文不猜。</p>
+  </div>
+</header>
+
+<nav aria-label="目錄">
+  <div class="toc">
+    <a class="cat1" href="#ergo"><span class="num">一</span><span class="t">人體工學椅</span><span class="r">約 3,500～3 萬</span></a>
+    <a class="cat2" href="#gaming"><span class="num">二</span><span class="t">電競椅</span><span class="r">約 6,000～1.7 萬</span></a>
+    <a class="cat3" href="#desk"><span class="num">三</span><span class="t">智慧型電動升降桌</span><span class="r">約 7,500～3.2 萬</span></a>
+  </div>
+  <div class="toc-more"><a href="#compare">四、三大類之間的差別</a><a href="#tips">五、新人快速記憶重點</a><a href="#sources">六、資料來源與抓取時間</a></div>
+</nav>
+
+<div class="legend" aria-label="標籤說明">
+  <span class="item"><span class="chip chip-pre">預購</span>預購中</span>
+  <span class="item"><span class="chip chip-out">缺貨</span>／<span class="chip chip-out">部分缺貨</span>全部或部分款式缺貨</span>
+  <span class="item"><span class="chip chip-fixed">不可升降</span>／<span class="chip chip-fixed">非電動</span>／<span class="chip chip-fixed">頁面未提升降</span>升降相關提醒</span>
+  <span class="item"><span class="chip chip-kind">邊几</span>／<span class="chip chip-kind">人體工學頁</span>品類或所在分類頁</span>
+</div>
+
+<!-- 一、人體工學椅 -->
+<section id="ergo" class="sec-cat cat1">
+  <div class="sec-head"><span class="no">01</span><h2>一、人體工學椅</h2></div>
+  <div class="intro"><p><span class="label">白話簡介</span>給每天要坐很久的人（上班族、居家工作、學生）。重點是「把身體撐在正確姿勢」：可調腰靠、頭枕、扶手、座深，多數用透氣網布，目的是久坐不痠、不悶熱。</p></div>
+  <h3>商品表（依售價低→高）</h3>
+  <p class="sub">「特價」＝頁面標示原價並以較低價格販售。</p>
+  <div class="tablewrap" role="region" aria-label="人體工學椅商品表" tabindex="0"><table>
+<caption class="sr">人體工學椅商品表</caption>
+<thead><tr><th scope="col">品牌</th><th scope="col">商品名</th><th scope="col" class="price">售價（元）</th><th scope="col">主要特色（取自商品頁）</th><th scope="col">適合誰</th></tr></thead>
+<tbody>
+<tr><td class="brand">4+ 舒樂活</td><td class="name"><a href="https://finshop.com.tw/products/4-health-%E8%88%92%E6%A8%82%E6%B4%BB-xchair%E2%84%A2-%E9%BB%91%E6%A1%86%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">XChair™（黑框／白框）</a></td><td class="price"><span class="pmain">3,480～4,680</span><span class="psub">（黑框無扶手 3,480、固定扶手 3,780；白框 4,680）</span></td><td class="feat">原創「隨腰」設計、傾仰時椅背不脫背；頁面寫「企業首選職員椅」；2 年保固</td><td class="who">預算最低、企業大量採購職員椅</td></tr>
+<tr><td class="brand">4+ 舒樂活</td><td class="name"><a href="https://finshop.com.tw/products/4-health-%E8%88%92%E6%A8%82%E6%B4%BB-ichair%E2%84%A2-%E9%BB%91%E6%A1%86%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">iChair™（黑框／白框）</a></td><td class="price"><span class="pmain">3,900～5,800</span><span class="psub">（黑框無扶手 3,900、固定扶手 4,200；白框 5,800）</span></td><td class="feat">附調整型腰靠片；流線外觀；2 年保固</td><td class="who">入門、重視外型簡約</td></tr>
+<tr><td class="brand">TTRacing</td><td class="name"><a href="https://finshop.com.tw/products/ttracing-airflex-v2">AIRFLEX V2 人體工學椅（6 色）</a></td><td class="price"><span class="pmain">6,999</span><span class="psub">（煙灰色特價 5,999，原價 6,999）</span></td><td class="feat">高透氣網布椅身＋透氣纖維坐墊；椅背 3 段後仰（104°／110°／121°）；可掀式絨面扶手（可翻 90°）<span class="psub">來源：客服資料庫</span></td><td class="who">入門預算</td></tr>
+<tr><td class="brand">ThunderX3（TX3）</td><td class="name"><a href="https://finshop.com.tw/products/tx3-yama-lite">YAMA Lite</a><div class="chips"><span class="chip chip-pre">預購</span></div></td><td class="price"><span class="pmain">6,990</span><span class="psub">（預購，預計 12 月初出貨）</span></td><td class="feat">SYNC4 同步傾斜機構；3D 可調頭枕、2D 可調腰靠；承重 125kg、2 年保固<span class="psub">來源：客服資料庫</span></td><td class="who">入門預算</td></tr>
+<tr><td class="brand">4+ 舒樂活</td><td class="name"><a href="https://finshop.com.tw/products/4-health-%E8%88%92%E6%A8%82%E6%B4%BB-co-chair-%E8%83%A1%E6%A1%83%E6%9C%A8%E8%85%B3-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">CO Chair 胡桃木腳（3 色）</a></td><td class="price"><span class="pmain">7,980</span></td><td class="feat">木腳結合人體工學椅身；原創腰靠設計</td><td class="who">重視居家風格、家具感</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t16-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E7%B6%B2%E6%A4%85">T16 人體工學網椅（5 色）</a></td><td class="price"><span class="pmain">7,990</span></td><td class="feat"><a href="https://finshop.com.tw/products/irocks-t16-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E7%B6%B2%E6%A4%85" target="_blank" rel="noopener">看商品頁 ↗</a></td><td class="who">入門、想要多色選擇</td></tr>
+<tr><td class="brand">DEZCTOP</td><td class="name"><a href="https://finshop.com.tw/products/sano-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">Sano 人體工學椅（4 色）</a></td><td class="price"><span class="pmain">8,800</span></td><td class="feat">全網布＋泡棉腰靠（可上下調 9 cm）；3D 扶手、3D 頭枕、前後滑座 2.4 cm；頁面標示 175 cm 以下適用</td><td class="who">身高 175 以下、預算中低</td></tr>
+<tr><td class="brand">ThunderX3（TX3）</td><td class="name"><a href="https://finshop.com.tw/products/tx3-xtc">XTC（Mesh Black／Mesh Grey／LOFT）</a></td><td class="price"><span class="pmain">8,990～9,990</span><span class="psub">（Mesh Grey、LOFT 特價 8,990，原價 9,990）</span></td><td class="feat">SYNC5 五段舒適度調節，椅背 95°～120°；3D 可鎖定扶手、2D 頭枕；承重 125kg、2 年保固<span class="psub">來源：客服資料庫</span></td><td class="who">中低預算</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t03-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E8%BE%A6%E5%85%AC%E6%A4%85">T03 人體工學辦公椅</a></td><td class="price"><span class="pmain">8,990</span></td><td class="feat"><a href="https://finshop.com.tw/products/irocks-t03-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E8%BE%A6%E5%85%AC%E6%A4%85" target="_blank" rel="noopener">看商品頁 ↗</a></td><td class="who">中低預算</td></tr>
+<tr><td class="brand">4+ 舒樂活</td><td class="name"><a href="https://finshop.com.tw/products/4-health-%E8%88%92%E6%A8%82%E6%B4%BB-2-move%E5%8D%87%E7%B4%9A%E7%89%88%E8%88%92%E8%83%8C%E6%A4%85-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">2 Move 升級版舒背椅</a></td><td class="price"><span class="pmain">10,800</span><span class="psub">（灰色特價 9,800，原價 10,800）</span></td><td class="feat">Nylon Elastomer 彈性椅背；德國 BOCK 自載重底盤（依體重給回彈力）；加厚 8 cm 坐墊</td><td class="who">喜歡坐感軟、常伸懶腰後仰</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t07-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">T07 人體工學椅</a></td><td class="price"><span class="pmain">9,900</span></td><td class="feat">4D 扶手；椅背可升降附衣架；高彈力台灣網布；限重 125 kg、2 年保固</td><td class="who">中低預算、想要完整調整</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t03-neo-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E8%BE%A6%E5%85%AC%E6%A4%85">T03 NEO（2 色）</a></td><td class="price"><span class="pmain">9,990</span></td><td class="feat"><a href="https://finshop.com.tw/products/irocks-t03-neo-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E8%BE%A6%E5%85%AC%E6%A4%85" target="_blank" rel="noopener">看商品頁 ↗</a></td><td class="who">中低預算</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t07-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E8%BE%A6%E5%85%AC%E6%A4%85-%E7%89%B9%E4%BB%95%E7%89%88-%E7%90%A5%E7%8F%80%E7%99%BD-t07-special-edition-white">T07SE 特仕版（3 色）</a></td><td class="price"><span class="pmain">11,900</span></td><td class="feat">鯊魚網布；4D 扶手；PU 輪適用木地板；椅背衣架</td><td class="who">木地板家庭、喜歡淺色系</td></tr>
+<tr><td class="brand">ThunderX3（TX3）</td><td class="name"><a href="https://finshop.com.tw/products/tx3-xtc-pro-360">XTC PRO 360</a></td><td class="price"><span class="pmain">11,990</span></td><td class="feat">SYNC6 同步傾斜機構；4D×360° 扶手、2D 頭枕、可調腰靠；承重 150kg、2 年保固<span class="psub">來源：客服資料庫</span></td><td class="who">中階</td></tr>
+<tr><td class="brand">Kelay 起立</td><td class="name"><a href="https://finshop.com.tw/products/%E8%B5%B7%E7%AB%8B%E6%99%82%E5%85%89%E7%BE%8E%E5%AD%B8%E6%A4%85-%E7%A5%9E%E6%B0%A3%E6%A4%85-%E7%91%9C%E4%BC%BD%E7%B2%BE%E9%9D%88">KL-A1806-2 神氣椅－瑜伽精靈</a></td><td class="price"><span class="pmain">特價 12,340</span><span class="psub">（原價 12,990）</span></td><td class="feat">智慧自載重（自動調傾仰力道）；杜邦網布；超廣角頭枕、3D 扶手、四段傾仰＋防拍打；兩年保固、終身保修</td><td class="who">中階、重視安全與售後</td></tr>
+<tr><td class="brand">4+ 舒樂活</td><td class="name"><a href="https://finshop.com.tw/products/4-health-%E8%88%92%E6%A8%82%E6%B4%BB-no-9-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85%E5%90%AB%E8%85%B3%E6%89%98">NO.9 人體工學椅（含腳托，3 色）</a></td><td class="price"><span class="pmain">12,800</span></td><td class="feat">自載重底盤；調整型腰靠；附腳靠可轉休息模式</td><td class="who">想要午休躺靠</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t07-plus-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">T07 Plus（5 色）</a></td><td class="price"><span class="pmain">12,900</span></td><td class="feat">5D 扶手（可後折收納）；椅背前傾 6°，適合伏案；2 年保固</td><td class="who">常趴桌寫字、打字</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t07-evo-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">T07 EVO（4 色）</a></td><td class="price"><span class="pmain">12,900</span></td><td class="feat">AquaShieldTex 面料（耐磨好清潔）；皮面＋泡棉＋網布三層；自載重 5 段鎖定、5D 扶手</td><td class="who">不愛全網布觸感、要好清潔</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t07-neo-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E7%B6%B2%E6%A4%85-%E5%85%B1%E5%85%A9%E8%89%B2">T07 NEO（2 色）</a></td><td class="price"><span class="pmain">12,900</span></td><td class="feat">高密度泡棉加大坐墊；5D 扶手；後仰自載重</td><td class="who">要網背＋軟坐墊</td></tr>
+<tr><td class="brand">TTRacing</td><td class="name"><a href="https://finshop.com.tw/products/ttracing-aeroflex">AEROFLEX 人體工學椅（3 色）</a><div class="chips"><span class="chip chip-pre">預購</span></div></td><td class="price"><span class="pmain">13,999</span><span class="psub">（煙灰色預購特價 12,999）</span></td><td class="feat">GravitySync™ 動態腰背支撐；後仰最大 140°（可鎖 110°／125°／140°）；4D 可拆頭枕、3D 天鵝絨軟墊扶手<span class="psub">來源：客服資料庫</span></td><td class="who">中階</td></tr>
+<tr><td class="brand">COFO</td><td class="name"><a href="https://finshop.com.tw/products/cofo-chair-pro2-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">Chair Pro2 人體工學椅（3 色）</a></td><td class="price"><span class="pmain">13,900</span></td><td class="feat">網布椅面、座深可調 5cm；後仰可鎖 4 段（最大 127°）、雙關節頭枕；承重 125kg、3 年保固<span class="psub">來源：客服資料庫</span></td><td class="who">中階</td></tr>
+<tr><td class="brand">Alphaeon</td><td class="name"><a href="https://finshop.com.tw/products/alphaeon-e5-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">e5</a></td><td class="price"><span class="pmain">特價 14,071</span><span class="psub">（原價 15,990）</span></td><td class="feat">杜邦強化彈性網；2D 頸枕＋4D 扶手；BIFMA 12 萬次測試；可選低座短氣桿（低 4 cm）</td><td class="who">中高階、身形較矮可選低座</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t05-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8-%E8%BE%A6%E5%85%AC%E6%A4%85-1">T05 人體工學辦公椅（2 色）</a></td><td class="price"><span class="pmain">14,500</span></td><td class="feat">全網布、無泡棉無皮革；美國 Matrex 網布、BIFMA 認證；台灣製，全椅 5 年保固</td><td class="who">怕熱、重視長保固</td></tr>
+<tr><td class="brand">DEZCTOP</td><td class="name"><a href="https://finshop.com.tw/products/alphaeon-e3-%E8%A4%87%E8%A3%BD">ARC 人體工學椅</a><div class="chips"><span class="chip chip-pre">預購</span></div></td><td class="price"><span class="pmain">14,800～15,800</span><span class="psub">（太空黑 14,800 預購；氧氣白 15,800）</span></td><td class="feat">雙弧背框；隱藏式可獨立調腰靠；4D 扶手、鋁合金腳＋Class 4 氣壓桿</td><td class="who">中高階、重視背部貼合</td></tr>
+<tr><td class="brand">Kelay 起立</td><td class="name"><a href="https://finshop.com.tw/products/%E8%B5%B7%E7%AB%8B%E6%99%82%E5%85%89%E7%BE%8E%E5%AD%B8%E6%A4%85-%E6%97%97%E8%89%A6%E7%89%B9%E4%BB%95%E6%A4%85-a1888">KL-A1888 旗艦特仕椅（灰／銀）</a></td><td class="price"><span class="pmain">特價 15,010</span><span class="psub">（原價 15,800）</span></td><td class="feat">專利多元廣角可調腰撐；4D 連動扶手；四段傾仰＋防拍打</td><td class="who">腰部需求強的人</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t27-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">T27 人體工學椅</a></td><td class="price"><span class="pmain">15,500</span></td><td class="feat"><a href="https://finshop.com.tw/products/irocks-t27-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85" target="_blank" rel="noopener">看商品頁 ↗</a></td><td class="who">中高階</td></tr>
+<tr><td class="brand">Kelay 起立</td><td class="name"><a href="https://finshop.com.tw/products/%E8%B5%B7%E7%AB%8B%E6%99%82%E5%85%89%E7%BE%8E%E5%AD%B8%E6%A4%85-%E6%97%97%E8%89%A6%E7%89%B9%E4%BB%95%E6%A4%85-%E5%85%A8%E6%96%B0%E5%8D%87%E7%B4%9A%E6%B2%99%E7%99%BC%E5%B8%83">KL-A1888F 旗艦特仕椅－沙發布</a></td><td class="price"><span class="pmain">特價 15,960</span><span class="psub">（原價 16,800）</span></td><td class="feat">同 A1888 腰撐／扶手；麂皮觸感沙發布＋杜邦網布</td><td class="who">喜歡布面觸感</td></tr>
+<tr><td class="brand">ThunderX3（TX3）</td><td class="name"><a href="https://finshop.com.tw/products/tx3-flex-pro-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E8%BE%A6%E5%85%AC%E6%A4%85">FLEX PRO 人體工學辦公椅（3 色）</a></td><td class="price"><span class="pmain">16,490～17,090</span><span class="psub">（原價 17,990）</span></td><td class="feat">MESH 網布或 Loft 透氣布；同步傾仰機構、5D×360° 扶手、可調腰靠；承重 125kg、3 年保固<span class="psub">來源：客服資料庫</span></td><td class="who">中高階</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t05-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8-%E8%BE%A6%E5%85%AC%E6%A4%85">T05 PLUS（2 色）</a></td><td class="price"><span class="pmain">16,500</span></td><td class="feat">T05 全部特色＋人性化托盤單邊操控；5 年保固</td><td class="who">高階網椅</td></tr>
+<tr><td class="brand">Fractal</td><td class="name"><a href="https://finshop.com.tw/products/refine-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">Refine 人體工學椅</a><div class="chips"><span class="chip chip-out">部分缺貨</span></div></td><td class="price"><span class="pmain">特價 16,990</span><span class="psub">（原價 19,800）；黑／麂皮款 29,800（缺貨）</span></td><td class="feat"><a href="https://finshop.com.tw/products/refine-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85" target="_blank" rel="noopener">看商品頁 ↗</a></td><td class="who">高階、北歐設計</td></tr>
+<tr><td class="brand">LiberNovo</td><td class="name"><a href="https://finshop.com.tw/products/libernovo-omni-%E5%8B%95%E6%85%8B%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85-%E5%85%B1%E5%85%A9%E8%89%B2-%E7%86%B1%E5%94%AE%E4%B8%AD">Omni 動態人體工學椅（2 色）</a><div class="chips"><span class="chip chip-pre">預購</span></div></td><td class="price"><span class="pmain">特價 16,999</span><span class="psub">（原價 19,999），預購 11 月初</span></td><td class="feat">FlexFit 仿生外骨骼柔性椅背；電動腰背支撐（50mm 無段微調）＋腰背伸展放鬆模式；後仰 4 段（最大 160°）<span class="psub">來源：客服資料庫</span></td><td class="who">高階</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t27s-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85-%E5%90%AB%E8%85%B3%E6%89%98">T27S 人體工學椅（含腳托）</a></td><td class="price"><span class="pmain">17,500</span></td><td class="feat"><a href="https://finshop.com.tw/products/irocks-t27s-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85-%E5%90%AB%E8%85%B3%E6%89%98" target="_blank" rel="noopener">看商品頁 ↗</a></td><td class="who">高階、要躺靠</td></tr>
+<tr><td class="brand">ThunderX3（TX3）</td><td class="name"><a href="https://finshop.com.tw/products/tx3-flex-pro-footrest">Flex Pro Footrest（2 色）</a></td><td class="price"><span class="pmain">18,490～18,990</span><span class="psub">（原價 19,990）</span></td><td class="feat">FLEX PRO 椅身加內建可伸展腿靠（腳踏功能）；5D×360° 扶手、可調腰靠；承重 125kg、3 年保固<span class="psub">來源：客服資料庫</span></td><td class="who">高階</td></tr>
+<tr><td class="brand">Fractal</td><td class="name"><a href="https://finshop.com.tw/products/fractal-refine-2-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">Refine 2（網布／軟布／混合布）</a></td><td class="price"><span class="pmain">21,900</span></td><td class="feat">頁面摘要：雙區腰靠、4D 扶手、記憶泡棉頭枕、座深調整、多段傾仰</td><td class="who">旗艦</td></tr>
+<tr><td class="brand">COFO</td><td class="name"><a href="https://finshop.com.tw/products/cofo-%E6%B5%AE%E9%9B%B2%E5%B7%A5%E5%AD%B8%E6%A4%852-0%E5%9B%9B%E8%89%B2">浮雲工學椅 2.0（4 色）</a><div class="chips"><span class="chip chip-pre">預購</span></div></td><td class="price"><span class="pmain">24,990～29,990</span><span class="psub">（全黑限定色 29,990），預購 11 月初</span></td><td class="feat">高透氣網布＋鋁合金骨架；6D 萬向扶手、3D 雙關節頭枕、附收折腳踏板；承重 135kg、3 年保固<span class="psub">來源：客服資料庫</span></td><td class="who">旗艦</td></tr>
+<tr><td class="brand">LiberNovo</td><td class="name"><a href="https://finshop.com.tw/products/libernovo-omni-pro%E5%8B%95%E6%85%8B%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">Omni Pro 動態人體工學椅（2 色）</a><div class="chips"><span class="chip chip-pre">預購</span></div></td><td class="price"><span class="pmain">27,990，預購 10 月底</span></td><td class="feat">頁面摘要：AirFlow 主動式吸風散熱系統</td><td class="who">旗艦、怕熱</td></tr>
+</tbody></table></div>
+  <div class="outbox"><h4>頁面上有、但目前全部缺貨</h4><ul><li><span class="chip chip-out">缺貨</span><a href="https://finshop.com.tw/products/tx3-yama-360">TX3 YAMA 360</a>（8,990）</li><li><span class="chip chip-out">缺貨</span><a href="https://finshop.com.tw/products/alphaeon-e3-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">Alphaeon e3</a>（13,990，頁面寫「完售，建議可改選 KELAY A1806-2」）</li><li><span class="chip chip-out">缺貨</span>Alphaeon e7 <a href="https://finshop.com.tw/products/alphaeon-e7-bk">透氣仿羊皮革</a>／<a href="https://finshop.com.tw/products/alphaeon-e7-gy">超纖貓抓布</a>（18,990；頁面寫台灣製、五年保固）</li></ul></div>
+  <h3>類內差別（價位帶）</h3>
+  <ol class="bands"><li><div class="band-head"><span class="band-name">入門</span><span class="band-range">約 3,500～8,000</span></div><p>4+ XChair／iChair、TTRacing AIRFLEX V2、TX3 YAMA Lite、iRocks T16、CO Chair。可調的地方較少（例如 XChair／iChair 只分「無扶手／固定扶手」），頁面寫出的多半是腰靠片、2 年保固。</p></li><li><div class="band-head"><span class="band-name">中階</span><span class="band-range">約 8,000～14,000</span></div><p>Sano、TX3 XTC、iRocks T03／T07 全系列、2 Move、Kelay A1806-2、NO.9、AEROFLEX、COFO Pro2。這一帶開始有 3D～5D 扶手、可調頭枕、座深滑座，以及「自載重」（依體重自動調後仰力道）。</p></li><li><div class="band-head"><span class="band-name">高階</span><span class="band-range">約 14,000～20,000</span></div><p>Alphaeon e5、iRocks T05／T05 PLUS／T27／T27S、ARC、Kelay A1888／A1888F、TX3 FLEX PRO、Refine、Omni。頁面寫出的升級點包括杜邦或 Matrex 網布、BIFMA 認證、專利腰撐、鋁合金腳，以及 5 年保固（T05 系列）。</p></li><li><div class="band-head"><span class="band-name">旗艦</span><span class="band-range">20,000 以上</span></div><p>Fractal Refine 2、COFO 浮雲 2.0、LiberNovo Omni Pro。</p></li></ol>
+</section>
+
+<!-- 二、電競椅 -->
+<section id="gaming" class="sec-cat cat2">
+  <div class="sec-head"><span class="no">02</span><h2>二、電競椅</h2></div>
+  <div class="intro"><p><span class="label">白話簡介</span>給玩遊戲、追劇、喜歡「包覆感」的人。外型是賽車椅高背造型，皮革或布面＋泡棉，椅背能大角度後仰（多為 150～155°），附頭枕和腰枕，坐起來像「被包住」，很多款有聯名與造型。</p></div>
+  <h3>商品表（依售價低→高）</h3>
+  <p class="sub">標 <span class="chip chip-kind">人體工學頁</span> 的款式在「人體工學」分類頁出現，但商城自己把它歸為電競椅（Gaming Chair），所以放在這裡。</p>
+  <div class="tablewrap" role="region" aria-label="電競椅商品表" tabindex="0"><table>
+<caption class="sr">電競椅商品表</caption>
+<thead><tr><th scope="col">品牌</th><th scope="col">商品名</th><th scope="col" class="price">售價（元）</th><th scope="col">主要特色（取自商品頁）</th><th scope="col">適合誰</th></tr></thead>
+<tbody>
+<tr><td class="brand">TTRacing</td><td class="name"><a href="https://finshop.com.tw/products/ttracing-duo-v4-%E9%80%8F%E6%B0%A3%E5%B8%83%E6%AC%BE">DUO V4 透氣布款（KITTYPUFF／BUNNYBLISS）</a><div class="chips"><span class="chip chip-kind">人體工學頁</span></div></td><td class="price"><span class="pmain">5,999</span></td><td class="feat">椅背後仰可鎖定、回彈力道可調；不附頭枕與腰枕<span class="psub">來源：客服資料庫</span></td><td class="who">入門、喜歡可愛配色</td></tr>
+<tr><td class="brand">Tesoro</td><td class="name"><a href="https://finshop.com.tw/products/tokidoki%E8%81%AF%E5%90%8D%E6%AC%BE%E9%9B%BB%E7%AB%B6%E6%A4%85-%E5%A1%97%E9%B4%89%E5%BD%A9%E8%89%B2">Tokidoki 聯名款電競椅（塗鴉彩色／街頭黑白，附腰枕）</a></td><td class="price"><span class="pmain">特價 6,990</span><span class="psub">（原價 7,490）</span></td><td class="feat">Nappa 皮革；椅背可後仰 155°、逍遙模式 19° 可鎖定；2D 扶手、TÜV 4 級氣壓桿</td><td class="who">入門、喜歡潮流聯名</td></tr>
+<tr><td class="brand">ThunderX3（TX3）</td><td class="name"><a href="https://finshop.com.tw/products/tx3-solo-360-loft-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E9%9B%BB%E7%AB%B6%E6%A4%85">SOLO 360｜LOFT 人體工學電競椅</a><div class="chips"><span class="chip chip-out">部分缺貨</span></div></td><td class="price"><span class="pmain">Dark Gray 特價 6,990</span><span class="psub">（原價 7,990）；Light Gray 7,990（缺貨）</span></td><td class="feat"><a href="https://finshop.com.tw/products/tx3-solo-360-loft-%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E9%9B%BB%E7%AB%B6%E6%A4%85" target="_blank" rel="noopener">看商品頁 ↗</a></td><td class="who">入門</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t02-plus-%E9%A0%82%E7%B4%9A%E8%BE%A6%E5%85%AC%E6%A4%85">T02 Plus 頂級辦公椅（兩個分類頁都有）</a></td><td class="price"><span class="pmain">6,990</span></td><td class="feat"><a href="https://finshop.com.tw/products/irocks-t02-plus-%E9%A0%82%E7%B4%9A%E8%BE%A6%E5%85%AC%E6%A4%85" target="_blank" rel="noopener">看商品頁 ↗</a></td><td class="who">入門</td></tr>
+<tr><td class="brand">TTRacing</td><td class="name"><a href="https://finshop.com.tw/products/%E8%88%AA%E6%B5%B7%E7%8E%8B%E8%81%AF%E5%90%8D%E7%B3%BB%E5%88%97-ttracing-duo-v4-%E9%80%8F%E6%B0%A3%E5%B8%83%E6%AC%BE-%E5%96%AC%E5%B7%B4">DUO V4 透氣布款－喬巴（航海王聯名，預購）</a><div class="chips"><span class="chip chip-kind">人體工學頁</span><span class="chip chip-pre">預購</span></div></td><td class="price"><span class="pmain">7,499</span></td><td class="feat">加寬椅背與 SeatFit™ 寬座面，盤腿也舒適；135° 後仰、可鎖定；椅背航海王刺繡，耐重 130kg<span class="psub">來源：客服資料庫</span></td><td class="who">航海王粉絲</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t08-plus-%E9%AB%98%E9%9A%8E%E9%9B%BB%E8%85%A6%E6%A4%85">T08 Plus 高階電腦椅</a></td><td class="price"><span class="pmain">7,990</span></td><td class="feat"><a href="https://finshop.com.tw/products/irocks-t08-plus-%E9%AB%98%E9%9A%8E%E9%9B%BB%E8%85%A6%E6%A4%85" target="_blank" rel="noopener">看商品頁 ↗</a></td><td class="who">入門</td></tr>
+<tr><td class="brand">Alphaeon</td><td class="name"><a href="https://finshop.com.tw/products/aetk-kaiju-c">Kaiju－漫遊怪獸（tokidoki 聯名）</a><div class="chips"><span class="chip chip-out">部分缺貨</span></div></td><td class="price"><span class="pmain">特價 8,990</span><span class="psub">（原價 9,990）；同系列「午夜獨角獸」9,990 缺貨</span></td><td class="feat">Nappa 皮革＋高密度冷泡棉；大尺寸記憶棉腰枕；3D 扶手、後仰 150°</td><td class="who">喜歡聯名造型、要舒適</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t09-%E8%B3%AA%E6%84%9F%E5%B8%83%E9%9D%A2-%E9%9B%BB%E8%85%A6%E6%A4%85">T09 質感布面電腦椅</a></td><td class="price"><span class="pmain">8,990</span></td><td class="feat">防潑水布面；4D 扶手；椅背 90～155°、可調加大腰枕</td><td class="who">不愛皮革悶熱</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t28-plus-%E8%B2%93%E6%8A%93%E5%B8%83-%E5%B8%83%E9%9D%A2%E9%9B%BB%E8%85%A6%E6%A4%85">T28 Plus 貓抓布布面電腦椅（3 色）</a></td><td class="price"><span class="pmain">9,900</span></td><td class="feat">貓抓布＋防潑水，養寵物適用；加大平寬座墊可盤腿；4D 扶手、承重 130 kg</td><td class="who">家裡有貓、愛盤腿</td></tr>
+<tr><td class="brand">TTRacing</td><td class="name"><a href="https://finshop.com.tw/products/%E8%88%AA%E6%B5%B7%E7%8E%8B%E8%81%AF%E5%90%8D%E7%B3%BB%E5%88%97-ttracing-swift-x-2020-%E9%80%8F%E6%B0%A3%E5%B8%83%E6%AC%BE-%E5%A8%9C%E7%BE%8E">SWIFT X 2020 透氣布款－娜美（航海王聯名，預購）</a><div class="chips"><span class="chip chip-kind">人體工學頁</span><span class="chip chip-pre">預購</span></div></td><td class="price"><span class="pmain">9,999</span></td><td class="feat">環繞式加寬腰、肩支撐；165° 後仰、高度可調寬扶手；椅身娜美航海圖設計，承重 150kg<span class="psub">來源：客服資料庫</span></td><td class="who">航海王粉絲</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-t29-%E9%9B%BB%E8%85%A6%E6%A4%85">T29 電腦椅（2 色）</a></td><td class="price"><span class="pmain">11,900</span></td><td class="feat"><a href="https://finshop.com.tw/products/irocks-t29-%E9%9B%BB%E8%85%A6%E6%A4%85" target="_blank" rel="noopener">看商品頁 ↗</a></td><td class="who">中階</td></tr>
+<tr><td class="brand">Alphaeon</td><td class="name"><a href="https://finshop.com.tw/products/zx2">ZX2（暗黑銀有貨；藍、紅缺貨）</a><div class="chips"><span class="chip chip-out">部分缺貨</span></div></td><td class="price"><span class="pmain">特價 12,990</span><span class="psub">（原價 14,990）</span></td><td class="feat">PU 皮革／Alcantara 合成麂皮；4D 扶手；後仰 150°、逍遙 25°；承重 150 kg</td><td class="who">高階、體型較大</td></tr>
+<tr><td class="brand">TTRacing</td><td class="name"><a href="https://finshop.com.tw/products/%E8%88%AA%E6%B5%B7%E7%8E%8B%E8%81%AF%E5%90%8D%E7%B3%BB%E5%88%97-ttracing-surge-x-%E9%80%8F%E6%B0%A3%E5%B8%83%E6%AC%BE-%E7%B4%A2%E9%9A%86">SURGE X 透氣布款－索隆／香吉士（航海王聯名，預購）</a><div class="chips"><span class="chip chip-kind">人體工學頁</span><span class="chip chip-pre">預購</span></div></td><td class="price"><span class="pmain">14,499</span></td><td class="feat">155° 後仰、4D 扶手；附記憶棉頸枕＋加大腰枕；承重 200kg、鋁合金底座<span class="psub">來源：客服資料庫（索隆款）</span></td><td class="who">航海王粉絲</td></tr>
+<tr><td class="brand">TTRacing</td><td class="name"><a href="https://finshop.com.tw/products/ttracing-maxx-pro-%E7%9A%AE%E9%9D%A9%E6%AC%BE">Maxx Pro（皮革款／透氣布款）</a></td><td class="price"><span class="pmain">15,499</span></td><td class="feat">雙面可伸縮腳托（承重 40kg）、磁吸頭枕；120° 逍遙搖擺＋後傾鎖定、5D 扶手；承重 200kg、2 年保固<span class="psub">來源：客服資料庫</span></td><td class="who">高階</td></tr>
+<tr><td class="brand">TTRacing</td><td class="name"><a href="https://finshop.com.tw/products/%E8%88%AA%E6%B5%B7%E7%8E%8B%E8%81%AF%E5%90%8D%E7%B3%BB%E5%88%97-%E4%B8%8A%E5%B8%82-ttracing-maxx-%E9%80%8F%E6%B0%A3%E5%B8%83%E6%AC%BE-%E9%AD%AF%E5%A4%AB">MAXX 透氣布款－魯夫（航海王聯名，預購）</a><div class="chips"><span class="chip chip-kind">人體工學頁</span><span class="chip chip-pre">預購</span></div></td><td class="price"><span class="pmain">16,999</span></td><td class="feat">155° 後仰＋120° 逍遙搖擺；5D 扶手、記憶棉頸枕與腰枕；承重 200kg，附魯夫草帽<span class="psub">來源：客服資料庫</span></td><td class="who">航海王粉絲、高階</td></tr>
+</tbody></table></div>
+  <div class="outbox"><h4>頁面上有、但目前全部缺貨</h4><ul><li><span class="chip chip-out">缺貨</span><a href="https://finshop.com.tw/products/s1">Alphaeon S1</a>（6,990）</li><li><span class="chip chip-out">缺貨</span><a href="https://finshop.com.tw/products/alphaeon-zx1">Alphaeon ZX1－Retro</a>（9,990）</li><li><span class="chip chip-out">缺貨</span><a href="https://finshop.com.tw/products/%E9%A0%90%E8%B3%BC-aston-martin-f1-team-%E8%81%AF%E5%90%8D%E6%AC%BE%E9%9B%BB%E7%AB%B6%E6%A4%85-stealth">Tesoro Aston Martin F1 Team 聯名款－Stealth</a>（17,990，另有一筆「全新出清品」同價，也缺貨）</li></ul></div>
+  <h3>類內差別（價位帶）</h3>
+  <ol class="bands"><li><div class="band-head"><span class="band-name">入門</span><span class="band-range">約 6,000～8,000</span></div><p>DUO V4、Tokidoki、SOLO 360、T02 Plus、T08 Plus。基本配備：高背、TÜV 4 級氣壓桿、2D～3D 扶手。</p></li><li><div class="band-head"><span class="band-name">中階</span><span class="band-range">約 8,000～12,000</span></div><p>Kaiju、T09、T28 Plus、SWIFT X、T29。扶手升到 3D／4D，出現布面、貓抓布選項、記憶棉腰枕。</p></li><li><div class="band-head"><span class="band-name">高階</span><span class="band-range">12,000 以上</span></div><p>ZX2、SURGE X、Maxx Pro、MAXX 魯夫。頁面寫出的有 Alcantara 麂皮、4D 扶手、逍遙角度更大（25°）、承重 150 kg。</p></li></ol>
+</section>
+
+<!-- 三、智慧型電動升降桌 -->
+<section id="desk" class="sec-cat cat3">
+  <div class="sec-head"><span class="no">03</span><h2>三、智慧型電動升降桌</h2></div>
+  <div class="intro">
+    <p><span class="label">白話簡介</span>桌面可以按鈕升降，讓人「坐著做一下、站著做一下」，不用一直坐著。尺寸、桌板材質、二節或三節桌腳都能選；另外也有幾款不能升降的固定桌和小邊几一起放在這一頁。</p>
+    <p><span class="label">名詞</span>頁面原文「三節升得更高、降得更低」。FUNTE 二節 73～121 cm、三節 63.7～128 cm。</p>
+  </div>
+  <h3>商品表（依售價低→高；同系列不同尺寸合併）</h3>
+  <div class="tablewrap" role="region" aria-label="智慧型電動升降桌商品表" tabindex="0"><table>
+<caption class="sr">智慧型電動升降桌商品表</caption>
+<thead><tr><th scope="col">品牌</th><th scope="col">商品名</th><th scope="col" class="price">售價（元）</th><th scope="col">主要特色（取自商品頁）</th><th scope="col">適合誰</th></tr></thead>
+<tbody>
+<tr><td class="brand">FUNTE</td><td class="name"><a href="https://finshop.com.tw/products/funte-ines-%E6%B0%A3%E5%A3%93%E5%BC%8F%E5%8D%87%E9%99%8D%E5%B0%8F%E9%82%8A%E5%87%A0-%E5%B0%8F%E9%82%8A%E6%A1%8C">Ines 氣壓式升降小邊几（2 色）</a><div class="chips"><span class="chip chip-kind">邊几</span><span class="chip chip-fixed">非電動</span></div></td><td class="price"><span class="pmain">3,490</span></td><td class="feat">氣壓升降 64～99 cm（非電動）；隱藏式腳輪；71×40 cm 小桌面＋置杯架</td><td class="who">床邊、沙發旁</td></tr>
+<tr><td class="brand">TTRacing</td><td class="name"><a href="https://finshop.com.tw/products/ttracing-tacto">TACTO 可移動升降邊几（4 色）</a><div class="chips"><span class="chip chip-kind">邊几</span></div></td><td class="price"><span class="pmain">4,599</span></td><td class="feat">腳踩踏板機械升降（72～116cm，免插電）；桌板可傾斜 0°～90°；萬向輪、內建杯架與耳機掛勾<span class="psub">來源：客服資料庫</span></td><td class="who">床邊、沙發旁</td></tr>
+<tr><td class="brand">FUNTE</td><td class="name"><a href="https://finshop.com.tw/products/funte-stable-%E5%9B%BA%E5%AE%9A%E5%BC%8F%E8%BE%A6%E5%85%AC%E9%9B%BB%E8%85%A6%E6%A1%8C%E5%9B%9B%E6%96%B9">Stable 固定式辦公電腦桌（四方／弧度）</a><div class="chips"><span class="chip chip-fixed">不可升降</span></div></td><td class="price"><span class="pmain">5,970～9,080</span><span class="psub">四方：5,970～9,080</span><span class="psub">弧度：6,480～9,080</span><span class="psub">（依尺寸 120×60～180×80）</span></td><td class="feat"><strong>不能升降</strong>，固定高度 73 cm；可備註預埋螺母方便搬家</td><td class="who">只要穩固的桌子、預算有限</td></tr>
+<tr><td class="brand">ThunderX3（TX3）</td><td class="name"><a href="https://finshop.com.tw/products/tx3-ezly-wood">EZLY 電動升降桌（雙色木紋／碳纖維紋）</a></td><td class="price"><span class="pmain">7,499</span></td><td class="feat">升降 71～116cm、防碰撞自動保護；附杯架與耳機掛勾；承重 60kg、3 年保固（建議不裝螢幕支架）<span class="psub">來源：客服資料庫</span></td><td class="who">最低預算的電動桌</td></tr>
+<tr><td class="brand">DEZCTOP</td><td class="name"><a href="https://finshop.com.tw/products/dezctop-bifrost-elite-120-%E9%9B%BB%E8%85%A6%E6%A1%8C">Bifrost 120／160 電腦桌</a><div class="chips"><span class="chip chip-fixed">頁面未提升降</span></div></td><td class="price"><span class="pmain">7,400～11,900</span><span class="psub">120 寬：7,400～9,900</span><span class="psub">160 寬：8,900～11,900</span><span class="psub">（無背板／有背板）</span></td><td class="feat">頁面未提升降，寫「全焊接高強度桌腳」；D-Board 背板可掛 9 種配件；大整線槽</td><td class="who">要背板收納、不需升降</td></tr>
+<tr><td class="brand">FUNTE</td><td class="name"><a href="https://finshop.com.tw/products/funte-mini-%E9%9B%99%E6%9F%B1%E9%9B%BB%E5%8B%95%E5%8D%87%E9%99%8D%E6%A1%8C">Mini+ 雙柱電動升降桌（90／100／120／150 × 60）</a></td><td class="price"><span class="pmain">10,900～14,900</span><span class="psub">（二節 10,900～12,400；三節 13,400～14,900）</span></td><td class="feat">頁面寫適合小坪數、租屋族；70.5～119 cm；深 60 無法裝抽屜、主機架、鍵盤架</td><td class="who">小房間、租屋</td></tr>
+<tr><td class="brand">DEZCTOP</td><td class="name"><a href="https://finshop.com.tw/products/revon-pro">Revon Pro 電動升降桌（3 色）</a></td><td class="price"><span class="pmain">12,000～14,600</span><span class="psub">（120×70～180×80）</span></td><td class="feat">二節 70～120 cm；磁吸手控器；可搭 DivMag 磁吸屏風配件（另購）</td><td class="who">重視桌面收納美感</td></tr>
+<tr><td class="brand">DEZCTOP</td><td class="name"><a href="https://finshop.com.tw/products/dezctop-bifrost-pro-120-%E9%9B%BB%E5%8B%95%E5%8D%87%E9%99%8D%E6%A1%8C">Bifrost Pro 120／160 電動升降桌</a></td><td class="price"><span class="pmain">12,800～17,300</span><span class="psub">120 寬：12,800～15,300</span><span class="psub">160 寬：14,300～17,300</span><span class="psub">（無背板／有背板）</span></td><td class="feat">二節 70～120 cm、四段高度記憶；靜音雙馬達、防夾；承重 120 kg</td><td class="who">要背板＋升降</td></tr>
+<tr><td class="brand">FUNTE</td><td class="name"><a href="https://finshop.com.tw/products/funte-%E6%99%BA%E6%85%A7%E5%9E%8B%E9%9B%BB%E5%8B%95%E4%BA%8C%E7%AF%80%E5%BC%8F%E5%8D%87%E9%99%8D%E6%A1%8C-120-x-60-cm">智慧型電動二節式升降桌（120×60～180×80）</a></td><td class="price"><span class="pmain">12,990～16,100</span></td><td class="feat">73～121 cm、30 mm/s；雙馬達承重 120 kg；桌板／桌腳顏色尺寸可客製；5 年保固</td><td class="who">主力款、一般家用與辦公</td></tr>
+<tr><td class="brand">Kelay × FUNTE</td><td class="name"><a href="https://finshop.com.tw/products/kelay-x-funte-%E8%B5%B7%E7%AB%8B%E7%8D%A8%E5%AE%B6%E5%90%89%E6%95%B8%E9%9B%BB%E5%8B%95%E5%8D%87%E9%99%8D%E6%A1%8C-120-x-60-%E4%BA%8C%E7%AF%80%E5%BC%8F">起立獨家柚木／吉數電動升降桌（120×60、133×68）</a></td><td class="price"><span class="pmain">13,680～18,000</span><span class="psub">（120×60 二節 13,680、三節 16,180；133×68 二節固定架 15,500、伸縮架 16,500、三節 18,000）</span></td><td class="feat">獨家柚木桌面；133×68 款有「文公尺吉數」高度設定（頁面寫全台唯一）；遇阻回彈</td><td class="who">重視實木感、在意吉數</td></tr>
+<tr><td class="brand">DEZCTOP</td><td class="name"><a href="https://finshop.com.tw/products/revon-elite">Revon Elite 電動升降桌（3 色）</a></td><td class="price"><span class="pmain">14,200～16,800</span></td><td class="feat">三節 65～130 cm；磁吸手控器；U 型桌架</td><td class="who">Revon 的三節升級版</td></tr>
+<tr><td class="brand">FUNTE</td><td class="name"><a href="https://finshop.com.tw/products/funte-island-%E9%9B%BB%E5%8B%95%E5%8D%87%E9%99%8D%E4%B8%AD%E5%B3%B6%E9%A4%90%E6%A1%8C-%E4%B8%89%E7%AF%80%E5%BC%8F-%E4%BA%8C%E7%AF%80%E5%BC%8F">Island 電動升降中島餐桌（120×60～180×80，二節／三節）</a></td><td class="price"><span class="pmain">14,490～20,100</span></td><td class="feat">防水、防焰、耐磨、易清潔；用旗艦 Prime 桌腳、4 cm 桌板；訂製約 30 個工作天</td><td class="who">廚房中島、餐桌兼工作桌</td></tr>
+<tr><td class="brand">FUNTE</td><td class="name"><a href="https://finshop.com.tw/products/flying-%E9%9B%BB%E7%AB%B6%E5%8D%87%E9%99%8D%E6%A1%8C">Flying 電競升降桌</a></td><td class="price"><span class="pmain">15,000～23,000</span><span class="psub">（依尺寸、板型、二／三節）</span></td><td class="feat">頁面寫中信飛牡蠣戰隊指定款；仿碳纖維皮；Prime 桌腳；訂製約 30 天</td><td class="who">電競玩家</td></tr>
+<tr><td class="brand">DEZCTOP</td><td class="name"><a href="https://finshop.com.tw/products/dezctop-bifrost-elite-120-%E9%9B%BB%E5%8B%95%E5%8D%87%E9%99%8D%E6%A1%8C">Bifrost Elite 120／160 電動升降桌</a></td><td class="price"><span class="pmain">15,300～19,800</span><span class="psub">120 寬：15,300～17,800</span><span class="psub">160 寬：16,800～19,800</span></td><td class="feat">三節 65～130 cm、四段記憶；D-Board 背板；160 寬可放 27 吋雙螢幕＋主機</td><td class="who">多螢幕、電競工作站</td></tr>
+<tr><td class="brand">FUNTE</td><td class="name"><a href="https://finshop.com.tw/products/funte-%E6%99%BA%E6%85%A7%E5%9E%8B%E9%9B%BB%E5%8B%95%E4%B8%89%E7%AF%80%E5%BC%8F%E5%8D%87%E9%99%8D%E6%A1%8C-120-x-60-cm">智慧型電動三節式升降桌（120×60～180×80）</a></td><td class="price"><span class="pmain">15,490～18,600</span></td><td class="feat">63.7～128 cm、38 mm/s；雙馬達承重 120 kg；SGS 認證耐用十年</td><td class="who">個子特別高或特別矮、升降速度快</td></tr>
+<tr><td class="brand">iRocks</td><td class="name"><a href="https://finshop.com.tw/products/irocks-d01-%E5%8D%87%E9%99%8D%E6%A1%8C-120-80">D01 升降桌（120～180 × 80）</a></td><td class="price"><span class="pmain">16,000～19,000</span></td><td class="feat">德國 OKIN 靜音雙馬達；三節、三段記憶；遇阻安全回退；動態承重 100 kg；預埋螺母</td><td class="who">重視安靜</td></tr>
+<tr><td class="brand">TTRacing</td><td class="name"><a href="https://finshop.com.tw/products/ttracing-tivon-120">Tivon 120／140 智慧電動升降桌／電競桌</a></td><td class="price"><span class="pmain">特價 16,390～16,990</span><span class="psub">（原價 17,390～17,990）</span></td><td class="feat">雙馬達，升降 72～122cm、噪音約 45 分貝；桌腳燈條、防碰撞保護；承重 120kg、2 年保固<span class="psub">來源：客服資料庫</span></td><td class="who">電競玩家</td></tr>
+<tr><td class="brand">FUNTE</td><td class="name"><a href="https://finshop.com.tw/products/flying-ii-rgb-%E9%9B%BB%E7%AB%B6%E5%8D%87%E9%99%8D%E6%A1%8C">Flying II RGB 電競升降桌</a></td><td class="price"><span class="pmain">19,900</span></td><td class="feat">機械鍵盤操控面板；內嵌 RGB 燈條；150×80、63.7～128 cm；附集線配件全套</td><td class="who">電競、要燈效</td></tr>
+<tr><td class="brand">COFO</td><td class="name"><a href="https://finshop.com.tw/products/cofo-%E8%89%AF%E6%9C%A8%E5%8D%87%E9%99%8D%E6%A1%8C">良木升降桌（120～180 × 70）</a></td><td class="price"><span class="pmain">20,499～21,999</span></td><td class="feat">天然實木桌面、雙馬達，升降 63～128cm；APP 遠端控制、遇障礙自動停止；承重 125kg、3 年保固<span class="psub">來源：客服資料庫</span></td><td class="who">高階</td></tr>
+<tr><td class="brand">FUNTE</td><td class="name"><a href="https://finshop.com.tw/products/force-%E5%A4%A7%E5%9E%8B%E9%9B%BB%E5%8B%95%E5%8D%87%E9%99%8D%E6%A1%8C%E7%BA%96%E7%B6%AD%E6%9D%BF150-80-cm">Force 大型電動升降桌（150×80～220×90，纖維板／蜂巢板）</a></td><td class="price"><span class="pmain">27,000～32,300</span><span class="psub">纖維板：27,000～30,800</span><span class="psub">蜂巢板：28,500～32,300</span></td><td class="feat">四柱四馬達、耐重 200 kg；60.5～125.5 cm、四段記憶；可當工作桌、餐桌、會議桌、主管桌</td><td class="who">大桌面、會議、主管桌</td></tr>
+</tbody></table></div>
+  <div class="outbox"><h4>頁面上有、但目前全部缺貨</h4><ul><li><span class="chip chip-out">缺貨</span><a href="https://finshop.com.tw/products/funte-ergoneck-%E5%81%A5%E5%BA%B7%E8%AD%B7%E9%A0%B8%E5%8D%87%E9%99%8D%E6%A1%8C">FUNTE ErgoNeck 健康護頸升降桌</a>（14,900；頁面寫健頸模式自動緩升緩降、附抽屜與集線槽、140×70 cm）</li></ul></div>
+  <div class="extra">
+    <p><strong>同頁的其他項目</strong></p>
+    <p><span class="chip chip-kind">加購服務</span> <a href="https://finshop.com.tw/products/tableassemble">FUNTE 升降桌到府安裝服務</a>（加購，1 張 2,000～5 張 7,000；不適用 Force；花東無法安裝）</p>
+    <p><span class="chip chip-kind">桌椅組</span> TX3 限量桌椅組（<a href="https://finshop.com.tw/products/tx3-%E9%99%90%E9%87%8F%E6%A1%8C%E6%A4%85%E7%B5%84-ezly%E9%9B%BB%E5%8B%95%E5%8D%87%E9%99%8D%E6%A1%8C-yama-lite%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8%E6%A4%85">EZLY＋YAMA Lite</a>，或 <a href="https://finshop.com.tw/products/%E6%96%B0%E5%93%81%E4%B8%8A%E5%B8%82-tx3-%E9%99%90%E9%87%8F%E6%A1%8C%E6%A4%85%E7%B5%84ezly%E9%9B%BB%E5%8B%95%E5%8D%87%E9%99%8D%E6%A1%8C-solo360%E9%9B%BB%E7%AB%B6%E6%A4%85">EZLY＋SOLO 360</a>，皆特價 11,990，原價 14,489／15,489）</p>
+  </div>
+  <h3>類內差別（價位帶）</h3>
+  <ol class="bands"><li><div class="band-head"><span class="band-name">不能升降或非電動</span><span class="band-range">3,490～11,900</span></div><p>Ines、TACTO 邊几、Stable 固定桌、Bifrost 電腦桌。</p></li><li><div class="band-head"><span class="band-name">入門電動</span><span class="band-range">約 7,500～14,000</span></div><p>TX3 EZLY、Mini+、Revon Pro、Bifrost Pro、FUNTE 二節式。多為二節，升降範圍約 70～120 cm。</p></li><li><div class="band-head"><span class="band-name">中階</span><span class="band-range">約 14,000～19,000</span></div><p>FUNTE 三節式、Revon Elite、Bifrost Elite、iRocks D01、Island、Kelay × FUNTE、Tivon。多了三節（升降範圍更大）、更多高度記憶、特殊桌面（柚木、防水防焰）。</p></li><li><div class="band-head"><span class="band-name">高階</span><span class="band-range">約 19,000 以上</span></div><p>Flying／Flying II RGB、COFO 良木、Force。多了電競造型、RGB、四柱四馬達與 200 kg 耐重、大桌面。</p></li></ol>
+</section>
+
+<!-- 四、三大類之間的差別 -->
+<section id="compare" class="sec-cat">
+  <div class="sec-head"><span class="no">04</span><h2>四、三大類之間的差別</h2></div>
+  <h3>人體工學椅 vs 電競椅</h3>
+  <p class="sub">歸納自兩類商品頁寫出的規格。</p>
+  <div class="tablewrap cmp" role="region" aria-label="人體工學椅與電競椅比較" tabindex="0"><table>
+    <thead><tr><th scope="col">比較點</th><th scope="col">人體工學椅</th><th scope="col">電競椅</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">設計取向</th><td>久坐工作時維持正確坐姿</td><td>包覆感、後仰放鬆、造型（聯名多）</td></tr>
+      <tr><th scope="row">材質</th><td>以網布為主（杜邦、Matrex、台灣網布），透氣</td><td>以皮革（Nappa、PU、Alcantara）或布面＋冷泡棉、定型棉為主</td></tr>
+      <tr><th scope="row">腰部支撐</th><td>椅背內建可調腰靠／腰撐，部分可上下前後調</td><td>多為另附的腰枕（枕頭式）</td></tr>
+      <tr><th scope="row">後仰</th><td>角度較小（頁面寫的多在 21°～28°），可分段鎖定，部分有自載重</td><td>後仰大（150°～155°），有「逍遙模式」19°～25°</td></tr>
+      <tr><th scope="row">其他常見調整</th><td>座深滑座、3D～5D 扶手、頭枕</td><td>2D～4D 扶手、頭枕、6 cm 賽車輪</td></tr>
+      <tr><th scope="row">適合族群</th><td>上班族、居家辦公、學生、怕熱的人</td><td>遊戲玩家、追劇、喜歡被包住的坐感、喜歡聯名的人</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><p><strong>注意：</strong>有幾款介於兩者之間：TX3 SOLO 360 叫「人體工學電競椅」；iRocks T09、T28 Plus 是布面電腦椅。被問到時可以依「要透氣網布還是要包覆」引導客人。</p></div>
+
+  <h3>升降桌和椅子怎麼搭</h3>
+  <ul class="pair">
+    <li>升降桌解決「一直坐著」，椅子解決「坐著的時候姿勢」。兩者是互補，不是二選一。</li>
+    <li>身高特別高或特別矮的客人，引導看三節式（頁面：「三節升得更高、降得更低」）。</li>
+    <li>商城本身有現成組合：TX3 EZLY 升降桌＋YAMA Lite（人體工學椅）或＋SOLO 360（電競椅），特價 11,990，適合第一次買整組、預算有限的客人。</li>
+    <li>電競取向的客人可以配：電競椅＋Flying／Flying II RGB／Tivon／Bifrost Elite（160 寬可放雙螢幕＋主機）。</li>
+    <li>小房間、租屋：Mini+（深 60）搭一張輕量網椅；注意 Mini+ 頁面寫深 60 無法裝抽屜、主機架、鍵盤架。</li>
+  </ul>
+</section>
+
+<!-- 五、新人快速記憶重點 -->
+<section id="tips">
+  <div class="sec-head"><span class="no">05</span><h2>五、新人快速記憶重點</h2></div>
+  <ol class="tips">
+    <li><strong>三類價位一句話</strong>：人體工學椅約 3,500～3 萬、電競椅約 6,000～1.7 萬、電動升降桌約 7,500～3.2 萬（Force 大桌最貴）。</li>
+    <li><strong>人體工學椅＝網布＋可調腰靠、撐住姿勢</strong>；<strong>電競椅＝皮革或布面＋大後仰＋腰枕、包覆感</strong>。</li>
+    <li><strong>升降桌先問尺寸，再問二節或三節</strong>：二節 73～121 cm、三節 63.7～128 cm（FUNTE），三節升得更高、降得更低。</li>
+    <li><strong>主力品牌</strong>：椅子 iRocks（款最多）、Kelay 起立、Alphaeon、4+ 舒樂活、TX3、TTRacing；桌子 FUNTE（款最多、可客製）、DEZCTOP。</li>
+    <li><strong>很多桌子要等</strong>：FUNTE 一般款下單到配送約 3～4 週；Island、Flying、Kelay 柚木款、Force 非現貨尺寸要訂製約 30 個工作天。</li>
+    <li><strong>Force 是四柱大桌</strong>（耐重 200 kg，可當會議桌／餐桌），到府安裝服務不適用 Force。</li>
+    <li><strong>頁名有「預購」「缺貨」就先確認出貨時間</strong>：例如 YAMA Lite（12 月初）、Omni Pro（10 月底）、航海王聯名（11 月初）。</li>
+    <li><strong>展示福利品</strong>（各門市展示機打折，如 Refine 16,990、e5 13,592、S1 4,990）也列在分類頁上，客人問便宜一點的選擇時可以提。</li>
+  </ol>
+</section>
+
+<!-- 六、資料來源與抓取時間 -->
+<section id="sources" class="src">
+  <div class="sec-head"><span class="no">06</span><h2>六、資料來源與抓取時間</h2></div>
+  <ul>
+    <li>抓取時間：2026-10-06 23:08（台灣時間）</li>
+    <li>來源（各分類頁的 Shopify 商品清單 <code>products.json?limit=250</code>，已確認沒有第 2 頁）：
+      <ul>
+        <li>人體工學（91 筆）：<a class="url" href="https://finshop.com.tw/collections/%E4%BA%BA%E9%AB%94%E5%B7%A5%E5%AD%B8">https://finshop.com.tw/collections/人體工學</a></li>
+        <li>電競椅系列（20 筆，全部和人體工學頁重複，只有「靜音中空輪」例外）：<a class="url" href="https://finshop.com.tw/collections/%E9%9B%BB%E7%AB%B6%E6%A4%85%E7%B3%BB%E5%88%97">https://finshop.com.tw/collections/電競椅系列</a></li>
+        <li>智慧型電動升降桌（77 筆）：<a class="url" href="https://finshop.com.tw/collections/%E6%99%BA%E6%85%A7%E5%9E%8B%E9%9B%BB%E5%8B%95%E5%8D%87%E9%99%8D%E6%A1%8C">https://finshop.com.tw/collections/智慧型電動升降桌</a></li>
+      </ul>
+    </li>
+    <li>三頁去重後共 167 筆。</li>
+    <li>正表只列主商品；配件（腳凳、腰靠、輪子、地墊）、展示福利品、出清品、桌椅組、安裝服務不列入，只在文中帶到。</li>
+  </ul>
+  <h3>抓不到或看不清楚的項目</h3>
+  <ul>
+    <li><strong>商品頁文字沒寫特色（多半是規格做成圖片）的 30 款</strong>，處理方式：<br>・已從客服資料庫（產品資料庫、QA 問答庫）補上特色、格內註明「來源：客服資料庫」的 20 款：TX3 YAMA Lite、XTC、XTC PRO 360、FLEX PRO、Flex Pro Footrest、EZLY；TTRacing AIRFLEX V2、AEROFLEX、DUO V4 透氣布款、DUO V4 喬巴、SWIFT X 2020 娜美、SURGE X 索隆／香吉士（資料庫只有索隆款）、Maxx Pro、MAXX 魯夫、TACTO、Tivon；COFO Chair Pro2、浮雲 2.0、良木升降桌；LiberNovo Omni。<br>・客服資料庫也沒有、改放「看商品頁 ↗」連結的 10 款：iRocks T16、T03、T03 NEO、T27、T27S、T02 Plus、T08 Plus、T29；Fractal Refine；TX3 SOLO 360｜LOFT。這些要看商品頁圖片或問原廠資料。</li>
+    <li>Fractal Refine 2 與 LiberNovo Omni Pro 的特色取自頁面的摘要文字（meta description），正文沒有。</li>
+    <li>「TX3 Flex Pro Footrest」頁面沒有文字說明；依客服資料庫，它是 FLEX PRO 椅身再加內建可伸展腿靠（腳踏功能）的版本。</li>
+    <li>DEZCTOP Bifrost「電腦桌」放在升降桌分類頁，但頁面文字沒提升降功能，能不能升降頁面未載明。</li>
+    <li>LiberNovo Omni 頁面寫「預計 7 月初後陸續出貨」，與商品名寫「預計 11 月初」不一致，以商品名較新為準，但頁面未更新。</li>
+  </ul>
+</section>
+
+<p class="foot">FIN SHOP 三大類產品簡介與差別分析（新人用）　資料抓取 2026-10-06 23:08　商品名可點開對應的商城商品頁。</p>
+</div>
+
+<script>(function(){var V="1";function go(){location.replace(location.pathname+"?v="+encodeURIComponent(window.__nv||Date.now())+location.hash)}function chk(auto){fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(j&&String(j.v)!==V){window.__nv=j.v;if(auto){go()}else{document.getElementById("upd").hidden=false}}}).catch(function(){})}document.getElementById("updBtn").addEventListener("click",go);setInterval(function(){chk(false)},60000);document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")chk(true)});})();</script>
+</body>
+</html>
